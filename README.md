@@ -1,3 +1,3 @@
-# artMultimediaMovies 
+# ArtMultimediaMovies 
 
-    Fullstack Responsive Movie Website 2023
+    Fullstack Responsive Movie Website artmultimedia 2023
