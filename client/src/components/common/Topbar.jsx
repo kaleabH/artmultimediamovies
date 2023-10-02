@@ -67,7 +67,7 @@ const Topbar = () => {
 
             {/* main menu */}
             <Box flexGrow={1} alignItems="center" display={{ xs: "none", md: "flex" }}>
-              <Box sx={{ marginRight: "30px" }}>
+              <Box sx={{ marginRight: "30px", marginTop:"15px"}}>
                 <Logo />
               </Box>
               {menuConfigs.main.map((item, index) => (
