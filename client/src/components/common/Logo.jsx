@@ -16,7 +16,7 @@ const Logo = () => {
                 color: theme.palette.primary.main,
                 maxWidth: '200px', 
                 maxHeight: '60px', 
-                filter:'brightness(150%)'
+                filter:'brightness(110%)'
                 
               }}
               />
