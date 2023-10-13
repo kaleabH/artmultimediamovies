@@ -7,6 +7,7 @@ import MediaSearch from "../pages/MediaSearch";
 import PasswordUpdate from "../pages/PasswordUpdate";
 import ReviewList from "../pages/ReviewList";
 import ProtectedPage from "../components/common/ProtectedPage";
+import Audiobook from "../pages/Audiobook";
 
 export const routesGen = {
   home: "/",
@@ -16,6 +17,7 @@ export const routesGen = {
   person: (id) => `/person/${id}`,
   favoriteList: "/favorites",
   reviewList: "/reviews",
+  audiobook: "/audiobook",
   passwordUpdate: "password-update"
 };
 
@@ -34,6 +36,12 @@ const routes = [
     path: "/search",
     element: <MediaSearch />,
     state: "search"
+  },
+  // -------  audiobook route added ------
+  {
+    path: "/audiobook",
+    state: "audiobook",
+    element: <Audiobook />,
   },
   {
     path: "/password-update",
