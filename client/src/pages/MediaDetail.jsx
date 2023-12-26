@@ -28,6 +28,7 @@ import BackdropSlide from "../components/common/BackdropSlide";
 import PosterSlide from "../components/common/PosterSlide";
 import RecommendSlide from "../components/common/RecommendSlide";
 import MediaSlide from "../components/common/MediaSlide";
+import VideoPlayer from "../components/common/VideoPlayer";
 import MediaReview from "../components/common/MediaReview";
 
 const MediaDetail = () => {
@@ -49,6 +50,7 @@ const MediaDetail = () => {
     const getMedia = async () => {
       dispatch(setGlobalLoading(true));
       const { response, err } = await mediaApi.getDetail({ mediaType, mediaId });
+      console.log("MediaDetail", response)
       dispatch(setGlobalLoading(false));
 
       if (response) {
@@ -57,7 +59,11 @@ const MediaDetail = () => {
         setGenres(response.genres.splice(0, 2));
       }
 
-      if (err) toast.error(err.message);
+      if (err){
+
+        getMedia();
+        // toast.error(err.message);
+      } 
     };
 
     getMedia();
@@ -215,6 +221,7 @@ const MediaDetail = () => {
                   {/* cast */}
                   <Container header="Cast">
                     <CastSlide casts={media.credits.cast} />
+                    {console.log("the media", media)}
                   </Container>
                   {/* cast */}
                 </Stack>
@@ -226,8 +233,9 @@ const MediaDetail = () => {
 
           {/* media videos */}
           <div ref={videoRef} style={{ paddingTop: "2rem" }}>
-            <Container header="Videos">
-              <MediaVideosSlide videos={[...media.videos.results].splice(0, 5)} />
+            <Container header="Video">
+              {/* <MediaVideosSlide videos={[...media.videos.results].splice(0, 5)} /> */}
+              <VideoPlayer media={media} mediaType={mediaType} session={0} episode={0} />
             </Container>
           </div>
           {/* media videos */}
@@ -254,15 +262,19 @@ const MediaDetail = () => {
 
           {/* media recommendation */}
           <Container header="you may also like">
-            {media.recommend.length > 0 && (
+            {/* {media.recommend.length > 0 && (
               <RecommendSlide medias={media.recommend} mediaType={mediaType} />
-            )}
+              )}
             {media.recommend.length === 0 && (
               <MediaSlide
                 mediaType={mediaType}
                 mediaCategory={tmdbConfigs.mediaCategory.top_rated}
               />
-            )}
+            )} */}
+
+              <RecommendSlide mediaType={mediaType} />
+
+
           </Container>
           {/* media recommendation */}
         </Box>

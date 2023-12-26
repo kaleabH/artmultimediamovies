@@ -10,11 +10,13 @@ import { toast } from "react-toastify";
 import userApi from "../../api/modules/user.api";
 import favoriteApi from "../../api/modules/favorite.api";
 import { setListFavorites, setUser } from "../../redux/features/userSlice";
+import Togglebtn  from "../common/Togglebtn";
 
 const MainLayout = () => {
   const dispatch = useDispatch();
 
   const { user } = useSelector((state) => state.user);
+  
 
   useEffect(() => {
     const authUser = async () => {
@@ -41,9 +43,9 @@ const MainLayout = () => {
 
   return (
     <>
-      {/* global loading */}
+      {/** global loading **/}
       <GlobalLoading />
-      {/* global loading */}
+      {/** global loading **/}
 
       {/* login modal */}
       <AuthModal />
@@ -52,6 +54,10 @@ const MainLayout = () => {
       <Box display="flex" minHeight="100vh">
         {/* header */}
         <Topbar />
+        {
+        user?.username ==="admin123" && 
+      <Togglebtn/>
+      }
         {/* header */}
 
         {/* main */}

@@ -1,5 +1,5 @@
+import { useSelector} from "react-redux";
 import { ThemeProvider } from "@mui/material/styles";
-import { useSelector } from "react-redux";
 import themeConfigs from "./configs/theme.configs";
 import { ToastContainer } from "react-toastify";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -13,12 +13,16 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
+
 const App = () => {
   const { themeMode } = useSelector((state) => state.themeMode);
+  const { user } = useSelector((state) => state.user);
+
 
   return (
     <ThemeProvider theme={themeConfigs.custom({ mode: themeMode })}>
       {/* config toastify */}
+      {console.log("the user context", user?.username)}
       <ToastContainer
         position="bottom-left"
         autoClose={5000}

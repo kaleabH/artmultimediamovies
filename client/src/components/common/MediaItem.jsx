@@ -10,7 +10,7 @@ import CircularRate from "./CircularRate";
 import { useSelector } from "react-redux";
 import favoriteUtils from "../../utils/favorite.utils";
 
-const MediaItem = ({ media, mediaType }) => {
+const MediaItem = ({setSelectedMedia, media, mediaType }) => {
   const { listFavorites } = useSelector((state) => state.user);
 
   const [title, setTitle] = useState("");
@@ -33,8 +33,11 @@ const MediaItem = ({ media, mediaType }) => {
   }, [media, mediaType]);
 
   return (
-    <Link to={mediaType !== "people" ? routesGen.mediaDetail(mediaType, media.mediaId || media.id) : routesGen.person(media.id)}>
-      <Box sx={{
+    <Link 
+    to={mediaType !== "people" ? routesGen.mediaDetail(mediaType, media.mediaId || media.id) : routesGen.person(media.id)}>
+      <Box 
+      onClick={()=>{setSelectedMedia(media)}} 
+      sx={{
         ...uiConfigs.style.backgroundImage(posterPath),
         paddingTop: "160%",
         "&:hover .media-info": { opacity: 1, bottom: 0 },
